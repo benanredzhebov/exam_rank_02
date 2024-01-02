@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/29 11:15:52 by beredzhe          #+#    #+#             */
-/*   Updated: 2023/12/29 11:15:54 by beredzhe         ###   ########.fr       */
+/*   Created: 2024/01/02 08:41:20 by beredzhe          #+#    #+#             */
+/*   Updated: 2024/01/02 09:04:12 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ Examples:
 
 $> ./first_word "FOR PONY" | cat -e
 FOR$
-$> ./first_word "this        ...    is sparta, then again, maybe    not" | cat -e
+$> ./first_word "this        ...       is sparta, then again, maybe    not" | cat -e
 this$
 $> ./first_word "   " | cat -e
 $
@@ -40,20 +40,20 @@ $>*/
 
 #include <unistd.h>
 
-int	main(int argc, const char *argv[])
+int	main(int argc, char *argv[])
 {
-	int	i;
+	int i;
 
 	i = 0;
 	if (argc == 2)
 	{
 		while (argv[1][i] == 32 || argv[1][i] == 9)
 			i++;
-		while (argv[1][i] != 32 && argv[1][i] != 9 && argv[1][i])
+		while ((argv[1][i] != 32) && (argv[1][i] != 9) && argv[1][i])
 		{
-			write (1, &argv[1][i], 1);
+			write(1, &argv[1][i], 1);
 			i++;
 		}
 	}
-	write (1, "\n", 1);
+	write(1, "\n", 1);
 }
