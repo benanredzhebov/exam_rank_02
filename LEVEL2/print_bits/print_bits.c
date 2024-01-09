@@ -1,51 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rev_print.c                                        :+:      :+:    :+:   */
+/*   print_bits.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/30 20:49:24 by beredzhe          #+#    #+#             */
-/*   Updated: 2023/12/30 21:26:30 by beredzhe         ###   ########.fr       */
+/*   Created: 2024/01/05 14:00:34 by beredzhe          #+#    #+#             */
+/*   Updated: 2024/01/05 14:43:42 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*Assignment name  : rev_print
-Expected files   : rev_print.c
+/*Assignment name  : print_bits
+Expected files   : print_bits.c
 Allowed functions: write
 --------------------------------------------------------------------------------
 
-Write a program that takes a string, and displays the string in reverse
-followed by a newline.
+Write a function that takes a byte, and prints it in binary WITHOUT A NEWLINE
+AT THE END.
 
-If the number of parameters is not 1, the program displays a newline.
+Your function must be declared as follows:
 
-Examples:
+void	print_bits(unsigned char octet);
 
-$> ./rev_print "zaz" | cat -e
-zaz$
-$> ./rev_print "dub0 a POIL" | cat -e
-LIOP a 0bud$
-$> ./rev_print | cat -e
-$
-*/
+Example, if you pass 2 to print_bits, it will print "00000010"*/
 
 #include <unistd.h>
 
-int	main (int argc, char *argv[])
+void	print_bits(unsigned char octet)
 {
-	int	i;
+	int	i = 8;
+	unsigned char	bit;
 
-	i = 0;
-	if (argc == 2)
+	while(i--)
 	{
-		while(argv[1][i] != '\0')
-			i++;
-		while(i >= 1)
-		{
-			write(1, &argv[1][i - 1], 1);
-			i--;
-		}
+		bit = (octet >> i & 1) + '0';
+		write(1, &bit, 1);
 	}
-	write (1, "\n",1);
+}
+
+int main()
+{
+	 unsigned char	byte = 2;
+
+	print_bits(byte);
+
+	return 0;
 }

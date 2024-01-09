@@ -1,33 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rot_13.c                                           :+:      :+:    :+:   */
+/*   ft_range.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/31 20:24:59 by beredzhe          #+#    #+#             */
-/*   Updated: 2023/12/31 20:47:52 by beredzhe         ###   ########.fr       */
+/*   Created: 2024/01/07 15:44:44 by beredzhe          #+#    #+#             */
+/*   Updated: 2024/01/07 16:03:05 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include <stdlib.h>
+#include <stdio.h>
 
-int	main(int argc, char *argv[])
+int	*ft_range(int start, int end)
 {
+	int	size;
+	int	*res;
 	int	i;
 
+	size = abs((end - start)) + 1;
+	res = malloc(size * sizeof(int));
+	if (!res)
+		return (NULL);
 	i = 0;
-	if (argc == 2)
+	if (start < end)
 	{
-		while (argv[1][i] != '\0')
+		while (start <= end)
 		{
-			if (argv[1][i] >= 'a' && argv[1][i] <= 'z')
-				argv[1][i] = (argv[1][i] - 'a' + 13) % 26 + 'a';
-			else if (argv[1][i] >= 'A' && argv[1][i] <= 'Z')
-				argv[1][i] = (argv[1][i] - 'A' + 13) % 26 + 'A'; 
-			write (1, &argv[1][i], 1);
-			i++;
+			res[i] = start;
+			start += 1;
+			i += 1;
 		}
 	}
-	write(1, "\n", 1);
+	else
+	{
+		while (start >= end)
+		{
+			res[i] = start;
+			start -= 1;
+			i += 1;
+		}
+	}
+	return (res);
 }

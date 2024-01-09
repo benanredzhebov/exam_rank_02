@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 13:41:15 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/01/03 14:12:35 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/01/07 15:29:41 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,15 @@ The function should be prototyped as follows:
 size_t	ft_strcspn(const char *s, const char *reject);*/
 
 #include <stdio.h>
-// #include <string.h>
 
 size_t	ft_strcspn(const char *s, const char *reject)
 {
 	int	i;
-	int	j;
+	int	j;	
 
 	i = 0;
 	j = 0;
-	while (s[1] != '\0')
+	while (s[i] != '\0')
 	{
 		j = 0;
 		while (reject[j] != '\0')
